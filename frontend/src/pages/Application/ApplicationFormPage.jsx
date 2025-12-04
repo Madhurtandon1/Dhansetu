@@ -46,17 +46,17 @@ export default function ApplicationFormPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 md:space-y-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
         <div>
-          <h1 className="text-xl md:text-2xl font-semibold text-slate-900">
+          <h1 className="text-2xl md:text-3xl font-semibold text-govBlue">
             New Beneficiary Application
           </h1>
-          <p className="text-xs md:text-sm text-slate-600">
-            Fill the sections step by step. Fields marked with * are mandatory.
+          <p className="text-xs md:text-sm text-slate-600 mt-1">
+            Fill the sections step by step. Fields marked with <span className="text-red-600 font-semibold">*</span> are mandatory.
           </p>
         </div>
-        <span className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-xs text-govBlue border border-blue-100">
+        <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-govSoftBlue text-xs text-govBlue border border-blue-200 font-medium">
           Mobile-first form · Draft not yet connected
         </span>
       </div>
@@ -69,17 +69,17 @@ export default function ApplicationFormPage() {
       >
         {/* STEP 1: PERSONAL DETAILS */}
         {step === 1 && (
-          <section className="section-box space-y-4">
-            <h2 className="section-title">Personal Details</h2>
+          <section className="section-box">
+            <h2 className="section-title mb-4">Personal Details</h2>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField id="fullName" label="Full Name" required>
                 <input
                   id="fullName"
                   type="text"
                   value={formData.fullName}
                   onChange={(e) => updateField("fullName", e.target.value)}
-                  className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
               </FormField>
 
@@ -90,7 +90,7 @@ export default function ApplicationFormPage() {
                   min="18"
                   value={formData.age}
                   onChange={(e) => updateField("age", e.target.value)}
-                  className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
               </FormField>
 
@@ -99,7 +99,7 @@ export default function ApplicationFormPage() {
                   id="gender"
                   value={formData.gender}
                   onChange={(e) => updateField("gender", e.target.value)}
-                  className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 >
                   <option value="">Select</option>
                   <option value="female">Female</option>
@@ -114,7 +114,7 @@ export default function ApplicationFormPage() {
                   type="text"
                   value={formData.district}
                   onChange={(e) => updateField("district", e.target.value)}
-                  className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
               </FormField>
             </div>
@@ -125,18 +125,18 @@ export default function ApplicationFormPage() {
                 rows="2"
                 value={formData.address}
                 onChange={(e) => updateField("address", e.target.value)}
-                className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
               />
             </FormField>
 
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <FormField id="occupation" label="Occupation" required>
                 <input
                   id="occupation"
                   type="text"
                   value={formData.occupation}
                   onChange={(e) => updateField("occupation", e.target.value)}
-                  className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
               </FormField>
 
@@ -146,7 +146,7 @@ export default function ApplicationFormPage() {
                   type="text"
                   value={formData.education}
                   onChange={(e) => updateField("education", e.target.value)}
-                  className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
               </FormField>
 
@@ -164,12 +164,12 @@ export default function ApplicationFormPage() {
                   onChange={(e) =>
                     updateField("householdSize", e.target.value)
                   }
-                  className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
               </FormField>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 id="rationCategory"
                 label="Ration Card Category"
@@ -182,7 +182,7 @@ export default function ApplicationFormPage() {
                   onChange={(e) =>
                     updateField("rationCategory", e.target.value)
                   }
-                  className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
               </FormField>
 
@@ -197,7 +197,7 @@ export default function ApplicationFormPage() {
                   type="text"
                   value={formData.aadhar}
                   onChange={(e) => updateField("aadhar", e.target.value)}
-                  className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
               </FormField>
             </div>
@@ -206,8 +206,8 @@ export default function ApplicationFormPage() {
 
         {/* STEP 2: DOCUMENTS */}
         {step === 2 && (
-          <section className="section-box space-y-5">
-            <h2 className="section-title">Documents</h2>
+          <section className="section-box">
+            <h2 className="section-title mb-4">Documents</h2>
 
             <UploadCard
               id="electricityBill"
@@ -243,8 +243,8 @@ export default function ApplicationFormPage() {
 
         {/* STEP 3: UTILITY & DIGITAL SIGNALS */}
         {step === 3 && (
-          <section className="section-box space-y-4">
-            <h2 className="section-title">Utility & Digital Signals</h2>
+          <section className="section-box">
+            <h2 className="section-title mb-4">Utility & Digital Signals</h2>
 
             <FormField
               id="mobileRechargeInfo"
@@ -258,7 +258,7 @@ export default function ApplicationFormPage() {
                 onChange={(e) =>
                   updateField("mobileRechargeInfo", e.target.value)
                 }
-                className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
               />
             </FormField>
 
@@ -274,11 +274,11 @@ export default function ApplicationFormPage() {
                 onChange={(e) =>
                   updateField("digitalPaymentsInfo", e.target.value)
                 }
-                className="w-full border rounded-md px-3 py-2 text-sm border-slate-300 focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue"
+                className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
               />
             </FormField>
 
-            <div className="bg-blue-50 border border-blue-100 rounded-md p-3 text-xs text-slate-700">
+            <div className="bg-govSoftBlue border border-blue-200 rounded-lg p-3 text-xs text-slate-700">
               In a full deployment, additional signals may be securely fetched
               via Account Aggregator and integrated into the scoring model.
             </div>
@@ -287,68 +287,72 @@ export default function ApplicationFormPage() {
 
         {/* STEP 4: REVIEW & SUBMIT */}
         {step === 4 && (
-          <section className="section-box space-y-4">
-            <h2 className="section-title">Review & Submit</h2>
+          <section className="section-box">
+            <h2 className="section-title mb-4">Review & Submit</h2>
 
-            <p className="text-sm text-slate-700">
+            <p className="text-sm text-slate-700 mb-4">
               Please review the key details below before submitting. In a full
               system, you would also see a pre-estimated score preview and
               consent summary here.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-4 text-xs md:text-sm">
-              <div className="card p-4 space-y-1">
-                <h3 className="font-semibold text-govBlue mb-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm mb-4">
+              <div className="card p-4">
+                <h3 className="font-semibold text-govBlue mb-3">
                   Personal Details
                 </h3>
-                <p>
-                  <span className="font-medium">Name:</span> {formData.fullName}
-                </p>
-                <p>
-                  <span className="font-medium">Age:</span> {formData.age}
-                </p>
-                <p>
-                  <span className="font-medium">Gender:</span>{" "}
-                  {formData.gender || "-"}
-                </p>
-                <p>
-                  <span className="font-medium">District:</span>{" "}
-                  {formData.district}
-                </p>
-                <p>
-                  <span className="font-medium">Household Size:</span>{" "}
-                  {formData.householdSize || "-"}
-                </p>
+                <div className="space-y-2">
+                  <p>
+                    <span className="font-medium">Name:</span> {formData.fullName}
+                  </p>
+                  <p>
+                    <span className="font-medium">Age:</span> {formData.age}
+                  </p>
+                  <p>
+                    <span className="font-medium">Gender:</span>{" "}
+                    {formData.gender || "-"}
+                  </p>
+                  <p>
+                    <span className="font-medium">District:</span>{" "}
+                    {formData.district}
+                  </p>
+                  <p>
+                    <span className="font-medium">Household Size:</span>{" "}
+                    {formData.householdSize || "-"}
+                  </p>
+                </div>
               </div>
 
-              <div className="card p-4 space-y-1">
-                <h3 className="font-semibold text-govBlue mb-1">
+              <div className="card p-4">
+                <h3 className="font-semibold text-govBlue mb-3">
                   Socio-economic
                 </h3>
-                <p>
-                  <span className="font-medium">Occupation:</span>{" "}
-                  {formData.occupation || "-"}
-                </p>
-                <p>
-                  <span className="font-medium">Education:</span>{" "}
-                  {formData.education || "-"}
-                </p>
-                <p>
-                  <span className="font-medium">Ration Category:</span>{" "}
-                  {formData.rationCategory || "-"}
-                </p>
-                <p>
-                  <span className="font-medium">Aadhaar (masked):</span>{" "}
-                  {formData.aadhar
-                    ? `****-****-${formData.aadhar.slice(-4)}`
-                    : "-"}
-                </p>
+                <div className="space-y-2">
+                  <p>
+                    <span className="font-medium">Occupation:</span>{" "}
+                    {formData.occupation || "-"}
+                  </p>
+                  <p>
+                    <span className="font-medium">Education:</span>{" "}
+                    {formData.education || "-"}
+                  </p>
+                  <p>
+                    <span className="font-medium">Ration Category:</span>{" "}
+                    {formData.rationCategory || "-"}
+                  </p>
+                  <p>
+                    <span className="font-medium">Aadhaar (masked):</span>{" "}
+                    {formData.aadhar
+                      ? `****-****-${formData.aadhar.slice(-4)}`
+                      : "-"}
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="bg-slate-50 border border-slate-200 rounded-md p-3 text-xs md:text-sm text-slate-700">
-              <p className="font-semibold mb-1">Consent Summary (Demo Text)</p>
-              <p>
+            <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-xs md:text-sm text-slate-700">
+              <p className="font-semibold text-govInk mb-2">Consent Summary (Demo Text)</p>
+              <p className="leading-relaxed">
                 By submitting this form, you confirm that the provided
                 information is accurate to the best of your knowledge and agree
                 to the use of your data for eligibility assessment under
@@ -361,7 +365,7 @@ export default function ApplicationFormPage() {
         )}
 
         {/* NAV BUTTONS */}
-        <div className="flex justify-between pt-2">
+        <div className="flex justify-between gap-3 pt-2">
           <Button
             type="button"
             variant="subtle"

@@ -1,15 +1,10 @@
 @import "tailwindcss";
 
-
 /* Full height */
 html,
 body,
 #root {
   height: 100%;
-  max-width: 1000px;
-  width: 80%;
-  margin: 0 auto;
-  padding: 0 20px;
 }
 
 /* Main theme */
@@ -18,28 +13,44 @@ body {
   font-family: "Inter", system-ui, sans-serif;
 }
 
-/* Page width */
+/* Page width - 80% max width centered */
 .main-container {
-  @apply max-w-6xl mx-auto px-4 md:px-6;
+  @apply max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-6 md:py-8;
 }
 
 /* Section Wrapper (gov-portal style) */
 .section-box {
-  @apply bg-white border border-slate-200 rounded-xl shadow-sm p-6 md:p-8;
+  @apply bg-white border border-slate-200 rounded-xl p-5 md:p-6 shadow-sm space-y-4;
 }
 
 /* Section Title */
 .section-title {
-  @apply text-xl md:text-2xl font-semibold mb-4 text-slate-900 border-l-4 pl-3 border-govBlue;
+  @apply text-lg md:text-xl font-semibold text-govBlue;
 }
 
 /* Card style */
 .card {
-  @apply bg-white rounded-xl shadow-sm border border-slate-200;
+  @apply bg-white border border-slate-200 rounded-lg p-4 hover:shadow-md hover:-translate-y-[2px] transition-all duration-200;
 }
 
 /* Soft background gradients */
 .app-bg {
   background: radial-gradient(circle at top left, #e2edff, transparent 45%),
               radial-gradient(circle at bottom right, #e8f4ff, transparent 50%);
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+  }
+  
+  .section-box {
+    box-shadow: none;
+    border: 1px solid #999;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
 }

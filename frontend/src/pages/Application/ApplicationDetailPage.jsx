@@ -1,10 +1,18 @@
-export default function ApplicationDetailPageDashboard() {
+import { MOCK_APPLICATION } from "../../lib/constants.js";
+import ApplicationSummaryHeader from "../../components/application/ApplicationSummaryHeader.jsx";
+import EvidencePanel from "../../components/application/EvidencePanel.jsx";
+import ScorePanel from "../../components/application/ScorePanel.jsx";
+import ActionBar from "../../components/application/ActionBar.jsx";
+
+export default function ApplicationDetailPage() {
+  const app = MOCK_APPLICATION;
+
   return (
-    <div>
-      <h1 className="text-xl font-semibold mb-4">ApplicationDetailPage Dashboard</h1>
-      <p className="text-sm text-slate-600">
-        Here you will see your applications, their scores and approval status.
-      </p>
+    <div className="space-y-6 md:space-y-8">
+      <ApplicationSummaryHeader app={app} />
+      <ScorePanel app={app} />
+      <EvidencePanel app={app} />
+      <ActionBar />
     </div>
   );
 }

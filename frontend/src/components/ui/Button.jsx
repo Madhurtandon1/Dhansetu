@@ -11,7 +11,7 @@ export default function Button({
     primary:
       "bg-govBlue text-white hover:bg-blue-800 focus:ring-govBlue focus:ring-offset-slate-100",
     secondary:
-      "bg-white text-govBlue border border-govBlue hover:bg-blue-50 focus:ring-govBlue focus:ring-offset-slate-100",
+      "bg-white text-govBlue border border-govBlue hover:bg-govSoftBlue focus:ring-govBlue focus:ring-offset-slate-100",
     subtle:
       "bg-slate-100 text-slate-800 hover:bg-slate-200 focus:ring-slate-400 focus:ring-offset-slate-100",
   };

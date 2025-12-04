@@ -1,9 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-100/80 mt-6">
-      <div className="main-container py-4 text-[11px] md:text-xs text-slate-600 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+    <footer className="border-t border-slate-200 bg-slate-100/80 mt-6 print:hidden">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-4 text-[11px] md:text-xs text-slate-600 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
         <div>
-          <p className="font-medium">
+          <p className="font-medium text-govInk">
             © {new Date().getFullYear()} NBCFDC – Smart Loan Screening (Demo)
           </p>
           <p>
