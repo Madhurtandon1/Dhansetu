@@ -1,1 +1,45 @@
 @import "tailwindcss";
+
+
+/* Full height */
+html,
+body,
+#root {
+  height: 100%;
+  max-width: 1000px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Main theme */
+body {
+  @apply bg-slate-100 text-slate-900;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Page width */
+.main-container {
+  @apply max-w-6xl mx-auto px-4 md:px-6;
+}
+
+/* Section Wrapper (gov-portal style) */
+.section-box {
+  @apply bg-white border border-slate-200 rounded-xl shadow-sm p-6 md:p-8;
+}
+
+/* Section Title */
+.section-title {
+  @apply text-xl md:text-2xl font-semibold mb-4 text-slate-900 border-l-4 pl-3 border-govBlue;
+}
+
+/* Card style */
+.card {
+  @apply bg-white rounded-xl shadow-sm border border-slate-200;
+}
+
+/* Soft background gradients */
+.app-bg {
+  background: radial-gradient(circle at top left, #e2edff, transparent 45%),
+              radial-gradient(circle at bottom right, #e8f4ff, transparent 50%);
+}

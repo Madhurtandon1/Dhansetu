@@ -1,0 +1,18 @@
+export default function ContactSection() {
+  return (
+    <section className="section-box">
+      <h2 className="section-title">Help & Contact</h2>
+
+      <p className="text-sm text-slate-700 leading-relaxed">
+        For assistance with loan applications, please contact your district-level
+        NBCFDC nodal officer. Technical support is available through the designated
+        helpdesk during working hours.
+      </p>
+
+      <p className="text-xs text-slate-500 mt-3">
+        This portal is a demonstration built for Smart India Hackathon, and may use
+        sample data for prototype evaluation.
+      </p>
+    </section>
+  );
+}
