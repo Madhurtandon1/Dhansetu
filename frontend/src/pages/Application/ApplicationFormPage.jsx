@@ -23,7 +23,7 @@ export default function ApplicationFormPage() {
     electricityBill: null,
     incomeCertificate: null,
     businessProof: null,
-    mobileRechargeInfo: "",
+    lpgInfo: "",
     digitalPaymentsInfo: "",
   });
 
@@ -247,16 +247,16 @@ export default function ApplicationFormPage() {
             <h2 className="section-title mb-4">Utility & Digital Signals</h2>
 
             <FormField
-              id="mobileRechargeInfo"
-              label="Mobile Recharge / Usage Details"
+              id="lpgInfo"
+              label="LPG Recharge / Usage Details"
               hint="Optional notes about monthly recharge pattern or data plans."
             >
               <textarea
-                id="mobileRechargeInfo"
+                id="lpgInfo"
                 rows="2"
-                value={formData.mobileRechargeInfo}
+                value={formData.lpgInfo}
                 onChange={(e) =>
-                  updateField("mobileRechargeInfo", e.target.value)
+                  updateField("lpgInfo", e.target.value)
                 }
                 className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
               />
@@ -351,7 +351,7 @@ export default function ApplicationFormPage() {
             </div>
 
             <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-xs md:text-sm text-slate-700">
-              <p className="font-semibold text-govInk mb-2">Consent Summary (Demo Text)</p>
+              <p className="font-semibold text-govInk mb-2">Consent Summary </p>
               <p className="leading-relaxed">
                 By submitting this form, you confirm that the provided
                 information is accurate to the best of your knowledge and agree
@@ -376,11 +376,11 @@ export default function ApplicationFormPage() {
           </Button>
 
           {step < TOTAL_STEPS ? (
-            <Button type="button" onClick={nextStep}>
+            <Button type="button" onClick={nextStep} className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700" >
               Next →
             </Button>
           ) : (
-            <Button type="submit">Submit Application</Button>
+            <Button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700">Submit Application</Button>
           )}
         </div>
       </form>

@@ -1,13 +1,15 @@
+import ashoka from "./ashoka.png";
+
 export default function Header() {
   return (
     <header className="bg-govBlue text-black shadow-md print:hidden">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-3 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         {/* Left: Emblem + Title */}
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-full bg-white/10 border border-white/40 flex items-center justify-center text-xs font-bold">
-            {/* Placeholder Ashoka emblem */}
-            🇮🇳
+          <div className="h-15 w-10 overflow-hidden border border-white/40 bg-white/20 flex items-center justify-center">
+            <img src={ashoka} alt="Ashoka Emblem" className="h-full w-full object-contain" />
           </div>
+
           <div className="leading-tight">
             <p className="text-[10px] uppercase tracking-wide text-black/90">
               Ministry of Social Justice &amp; Empowerment

@@ -6,7 +6,7 @@ export default function InfoBanner() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
           <div className="space-y-3">
             <p className="text-[11px] uppercase tracking-[0.2em] text-govGold font-semibold">
-              Government of India · Pilot Programme
+              Government of India · Dhansetu
             </p>
             <h1 className="text-3xl md:text-4xl font-bold leading-tight">
               Smart NBCFDC Loan Screening System
@@ -20,13 +20,13 @@ export default function InfoBanner() {
           <div className="flex flex-col items-stretch gap-3 min-w-fit">
             <a
               href="/application/new"
-              className="px-5 py-2.5 rounded-lg bg-govGold text-govBlue font-semibold hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-govGold shadow-md transition"
+              className="px-5 py-2.5 rounded-lg bg-white text-black font-semibold hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-govGold shadow-md transition"
             >
               Apply for Loan
             </a>
             <a
               href="/login"
-              className="px-5 py-2.5 rounded-lg border border-blue-100 text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white focus:ring-offset-govBlue font-medium transition"
+              className="px-5 py-2.5 rounded-lg bg-white border border-blue-100 text-slate-700 hover:bg-white/100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white focus:ring-offset-govBlue font-medium transition"
             >
               Officer / Admin Login
             </a>

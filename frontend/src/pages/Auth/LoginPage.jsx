@@ -19,7 +19,7 @@ export default function LoginPage() {
           </div>
           <button
             type="submit"
-            className="w-full bg-govBlue text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-govBlue focus:ring-offset-2 transition"
+            className="w-full bg-govBlue text-black rounded-lg py-2.5 text-sm font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-govBlue focus:ring-offset-2 transition"
           >
             Generate OTP
           </button>
