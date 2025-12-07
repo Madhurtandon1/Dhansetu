@@ -13,7 +13,7 @@ import ApplicationDetailPage from "../pages/Application/ApplicationDetailPage.js
 import ManualReviewQueuePage from "../pages/Application/ManualReviewQueuePage.jsx";
 import AuditLogPage from "../pages/Application/AuditLogPage.jsx";
 
-import SarpanchApprovalPage from "../pages/Sarpanch/SarpanchApprovalPage.jsx";
+// import SarpanchApprovalPage from "../pages/Sarpanch/SarpanchApprovalPage.jsx";
 
 function NotFoundPage() {
   return (
@@ -55,7 +55,7 @@ export function AppRoutes() {
         <Route path="/audit" element={<AuditLogPage />} />
 
         {/* Sarpanch */}
-        <Route path="/sarpanch" element={<SarpanchApprovalPage />} />
+        {/* <Route path="/sarpanch" element={<SarpanchApprovalPage />} /> */}
 
         {/* Fallback */}
         <Route path="*" element={<NotFoundPage />} />

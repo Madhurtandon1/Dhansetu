@@ -5,7 +5,7 @@ import HowItWorksSection from "./HowItWorksSection.jsx";
 import FAQSection from "./FAQSection.jsx";
 import ContactSection from "./ContactSection.jsx";
 import DashboardOverviewSection from "./DashboardOverviewSection.jsx";
-import SarpanchOverviewSection from "./SarpanchOverviewSection.jsx";
+// import SarpanchOverviewSection from "./SarpanchOverviewSection.jsx";
 
 
 export default function LandingPage() {
@@ -15,7 +15,7 @@ export default function LandingPage() {
       <AboutSection />
       
       <DashboardOverviewSection />
-      <SarpanchOverviewSection />
+      {/* <SarpanchOverviewSection /> */}
       <BenefitsSection />
       <HowItWorksSection />
       <FAQSection />

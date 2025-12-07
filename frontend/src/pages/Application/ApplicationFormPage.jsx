@@ -9,23 +9,26 @@ const TOTAL_STEPS = 4;
 export default function ApplicationFormPage() {
   const [step, setStep] = useState(1);
 
-  const [formData, setFormData] = useState({
-    fullName: "",
-    age: "",
-    gender: "",
-    district: "",
-    address: "",
-    occupation: "",
-    education: "",
-    householdSize: "",
-    rationCategory: "",
-    aadhar: "",
-    electricityBill: null,
-    incomeCertificate: null,
-    businessProof: null,
-    lpgInfo: "",
-    digitalPaymentsInfo: "",
-  });
+  // Form state aligned with backend field names
+const [formData, setFormData] = useState({
+  applicantName: "",
+  age: "",
+  gender: "",
+  district: "",
+  address: "",
+  occupation_type: "",
+  education_level: "",
+  household_size: "",
+  ration_card_type: "",
+  aadhaarNumber: "",
+  electricityBill: null,
+  electricity_units: "",
+  incomeCertificate: null,
+  businessProof: null,
+  lpgInfo: "",
+  digitalPaymentsInfo: "",
+});
+
 
   function updateField(name, value) {
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -41,8 +44,32 @@ export default function ApplicationFormPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Submitting application:", formData);
-    alert("Demo: Application submitted in console. You can wire API later.");
+
+    // This is the payload shape your backend likely expects
+    const payload = {
+      applicantName: formData.applicantName,
+      aadhaarNumber: formData.aadhaarNumber,
+      gender: formData.gender,
+      occupation_type: formData.occupation_type,
+      education_level: formData.education_level,
+      household_size: Number(formData.household_size || 0),
+      ration_card_type: formData.ration_card_type,
+      district: formData.district,
+      // optional / extra fields:
+      age: formData.age ? Number(formData.age) : null,
+      address: formData.address,
+      lpgInfo: formData.lpgInfo,
+      digitalPaymentsInfo: formData.digitalPaymentsInfo,
+      // documents – will be FormData / file upload later
+      electricityBill: formData.electricityBill,
+      incomeCertificate: formData.incomeCertificate,
+      businessProof: formData.businessProof,
+    };
+
+    console.log("Submitting application payload:", payload);
+    alert(
+      "Demo: Application payload logged in console. Wire this to API later."
+    );
   }
 
   return (
@@ -53,7 +80,8 @@ export default function ApplicationFormPage() {
             New Beneficiary Application
           </h1>
           <p className="text-xs md:text-sm text-slate-600 mt-1">
-            Fill the sections step by step. Fields marked with <span className="text-red-600 font-semibold">*</span> are mandatory.
+            Fill the sections step by step. Fields marked with{" "}
+            <span className="text-red-600 font-semibold">*</span> are mandatory.
           </p>
         </div>
         <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-govSoftBlue text-xs text-govBlue border border-blue-200 font-medium">
@@ -73,12 +101,12 @@ export default function ApplicationFormPage() {
             <h2 className="section-title mb-4">Personal Details</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField id="fullName" label="Full Name" required>
+              <FormField id="applicantName" label="Applicant Name" required>
                 <input
-                  id="fullName"
+                  id="applicantName"
                   type="text"
-                  value={formData.fullName}
-                  onChange={(e) => updateField("fullName", e.target.value)}
+                  value={formData.applicantName}
+                  onChange={(e) => updateField("applicantName", e.target.value)}
                   className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
               </FormField>
@@ -130,39 +158,63 @@ export default function ApplicationFormPage() {
             </FormField>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <FormField id="occupation" label="Occupation" required>
-                <input
-                  id="occupation"
-                  type="text"
-                  value={formData.occupation}
-                  onChange={(e) => updateField("occupation", e.target.value)}
-                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
-                />
+              <FormField id="occupation_type" label="Occupation Type" required>
+                <select
+                  id="occupation_type"
+                  value={formData.occupation_type}
+                  onChange={(e) =>
+                    updateField("occupation_type", e.target.value)
+                  }
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
+                >
+                  <option value="">Select</option>
+                  <option value="Farmer">Farmer</option>
+                  <option value="Daily Wage">Daily Wage</option>
+                  <option value="Self Employed">Self Employed</option>
+                  <option value="Private Job">Private Job</option>
+                  <option value="Govt Job">Govt Job</option>
+                </select>
               </FormField>
 
-              <FormField id="education" label="Education Level">
-                <input
-                  id="education"
-                  type="text"
-                  value={formData.education}
-                  onChange={(e) => updateField("education", e.target.value)}
-                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
-                />
+              <FormField id="education_level" label="Education Level" required>
+                <select
+                  id="education_level"
+                  value={formData.education_level}
+                  onChange={(e) =>
+                    updateField("education_level", e.target.value)
+                  }
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
+                >
+                  <option value="">Select</option>
+                  <option value="No formal education">
+                    No formal education
+                  </option>
+                  <option value="Primary">Primary</option>
+                  <option value="Middle">Middle</option>
+                  <option value="Secondary (10th)">Secondary (10th)</option>
+                  <option value="Higher Secondary (12th)">
+                    Higher Secondary (12th)
+                  </option>
+                  <option value="Graduate">Graduate</option>
+                  <option value="Postgraduate and above">
+                    Postgraduate and above
+                  </option>
+                </select>
               </FormField>
 
               <FormField
-                id="householdSize"
+                id="household_size"
                 label="Household Size"
                 required
                 hint="Number of people supported by this income."
               >
                 <input
-                  id="householdSize"
+                  id="household_size"
                   type="number"
                   min="1"
-                  value={formData.householdSize}
+                  value={formData.household_size}
                   onChange={(e) =>
-                    updateField("householdSize", e.target.value)
+                    updateField("household_size", e.target.value)
                   }
                   className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
@@ -171,33 +223,43 @@ export default function ApplicationFormPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
-                id="rationCategory"
-                label="Ration Card Category"
-                hint="E.g. AAY, BPL, APL."
+                id="ration_card_type"
+                label="Ration Card Type"
+                required
               >
-                <input
-                  id="rationCategory"
-                  type="text"
-                  value={formData.rationCategory}
+                <select
+                  id="ration_card_type"
+                  value={formData.ration_card_type}
                   onChange={(e) =>
-                    updateField("rationCategory", e.target.value)
+                    updateField("ration_card_type", e.target.value)
                   }
-                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
-                />
+                  className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
+                >
+                  <option value="">Select</option>
+                  <option value="APL">APL</option>
+                  <option value="BPL">BPL</option>
+                  <option value="AAY">AAY</option>
+                </select>
               </FormField>
 
               <FormField
-                id="aadhar"
+                id="aadhaarNumber"
                 label="Aadhaar Number"
                 required
-                hint="Used only as a unique identifier. The raw number is not stored directly."
+                hint="Used only as a unique identifier. The raw number is never displayed."
               >
                 <input
-                  id="aadhar"
+                  id="aadhaarNumber"
                   type="text"
-                  value={formData.aadhar}
-                  onChange={(e) => updateField("aadhar", e.target.value)}
+                  value={formData.aadhaarNumber}
+                  onChange={(e) => {
+                    const cleaned = e.target.value
+                      .replace(/\D/g, "")
+                      .slice(0, 12);
+                    updateField("aadhaarNumber", cleaned);
+                  }}
                   className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
+                  maxLength={12}
                 />
               </FormField>
             </div>
@@ -218,6 +280,24 @@ export default function ApplicationFormPage() {
                 updateField("electricityBill", e.target.files?.[0] ?? null)
               }
             />
+            <FormField
+              id="electricity_units"
+              label="Average Monthly Electricity Units Consumed"
+              hint="Enter approximate units (kWh) based on your recent bills."
+              required
+            >
+              <input
+                id="electricity_units"
+                type="number"
+                min="0"
+                value={formData.electricity_units}
+                onChange={(e) =>
+                  updateField("electricity_units", e.target.value)
+                }
+                className="w-full border border-slate-300 rounded-lg px-4 py-2 text-sm 
+               focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
+              />
+            </FormField>
 
             <UploadCard
               id="incomeCertificate"
@@ -248,16 +328,14 @@ export default function ApplicationFormPage() {
 
             <FormField
               id="lpgInfo"
-              label="LPG Recharge / Usage Details"
-              hint="Optional notes about monthly recharge pattern or data plans."
+              label="LPG / Utility Usage Details"
+              hint="Optional notes about LPG usage or other household utilities."
             >
               <textarea
                 id="lpgInfo"
                 rows="2"
                 value={formData.lpgInfo}
-                onChange={(e) =>
-                  updateField("lpgInfo", e.target.value)
-                }
+                onChange={(e) => updateField("lpgInfo", e.target.value)}
                 className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
               />
             </FormField>
@@ -303,7 +381,8 @@ export default function ApplicationFormPage() {
                 </h3>
                 <div className="space-y-2">
                   <p>
-                    <span className="font-medium">Name:</span> {formData.fullName}
+                    <span className="font-medium">Name:</span>{" "}
+                    {formData.applicantName}
                   </p>
                   <p>
                     <span className="font-medium">Age:</span> {formData.age}
@@ -318,7 +397,7 @@ export default function ApplicationFormPage() {
                   </p>
                   <p>
                     <span className="font-medium">Household Size:</span>{" "}
-                    {formData.householdSize || "-"}
+                    {formData.household_size || "-"}
                   </p>
                 </div>
               </div>
@@ -329,21 +408,21 @@ export default function ApplicationFormPage() {
                 </h3>
                 <div className="space-y-2">
                   <p>
-                    <span className="font-medium">Occupation:</span>{" "}
-                    {formData.occupation || "-"}
+                    <span className="font-medium">Occupation Type:</span>{" "}
+                    {formData.occupation_type || "-"}
                   </p>
                   <p>
-                    <span className="font-medium">Education:</span>{" "}
-                    {formData.education || "-"}
+                    <span className="font-medium">Education Level:</span>{" "}
+                    {formData.education_level || "-"}
                   </p>
                   <p>
-                    <span className="font-medium">Ration Category:</span>{" "}
-                    {formData.rationCategory || "-"}
+                    <span className="font-medium">Ration Card Type:</span>{" "}
+                    {formData.ration_card_type || "-"}
                   </p>
                   <p>
                     <span className="font-medium">Aadhaar (masked):</span>{" "}
-                    {formData.aadhar
-                      ? `****-****-${formData.aadhar.slice(-4)}`
+                    {formData.aadhaarNumber
+                      ? `****-****-${formData.aadhaarNumber.slice(-4)}`
                       : "-"}
                   </p>
                 </div>
@@ -351,7 +430,7 @@ export default function ApplicationFormPage() {
             </div>
 
             <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-xs md:text-sm text-slate-700">
-              <p className="font-semibold text-govInk mb-2">Consent Summary </p>
+              <p className="font-semibold text-govInk mb-2">Consent Summary</p>
               <p className="leading-relaxed">
                 By submitting this form, you confirm that the provided
                 information is accurate to the best of your knowledge and agree
@@ -376,11 +455,20 @@ export default function ApplicationFormPage() {
           </Button>
 
           {step < TOTAL_STEPS ? (
-            <Button type="button" onClick={nextStep} className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700" >
+            <Button
+              type="button"
+              onClick={nextStep}
+              className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700"
+            >
               Next →
             </Button>
           ) : (
-            <Button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700">Submit Application</Button>
+            <Button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700"
+            >
+              Submit Application
+            </Button>
           )}
         </div>
       </form>
