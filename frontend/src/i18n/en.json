@@ -1,0 +1,40 @@
+{
+  "header": {
+    "ministry": "Ministry of Social Justice & Empowerment",
+    "title": "Smart NBCFDC Loan Screening Portal",
+    "subtitle": "A pilot initiative for fair & data-driven credit access",
+    "home": "Home",
+    "apply": "Apply",
+    "login": "Login",
+    "contact": "Contact"
+  },
+  "landing": {
+    "heroTitle": "Building fair digital credit rails for every beneficiary",
+    "heroCta": "Start Application",
+    "aboutTitle": "About the Portal",
+    "benefitsTitle": "Why this matters",
+    "howItWorksTitle": "How the system works"
+  },
+  "form": {
+    "newApplicationTitle": "New Beneficiary Application",
+    "applicantName": "Applicant Name",
+    "age": "Age",
+    "gender": "Gender",
+    "district": "District",
+    "address": "Address",
+    "occupation_type": "Occupation Type",
+    "education_level": "Education Level",
+    "household_size": "Household Size",
+    "ration_card_type": "Ration Card Type",
+    "aadhaarNumber": "Aadhaar Number",
+    "electricityBill": "Electricity Bill",
+    "incomeCertificate": "Income Certificate (optional)",
+    "businessProof": "Business Proof (if self-employed)",
+    "lpgInfo": "LPG / Utility Usage Details",
+    "digitalPaymentsInfo": "Digital Payments / UPI Usage",
+    "reviewTitle": "Review & Submit",
+    "submit": "Submit Application",
+    "next": "Next",
+    "previous": "Previous"
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Button from "../../components/ui/Button.jsx";
 import FormField from "../../components/ui/FormField.jsx";
 import ProgressBar from "../../components/ui/ProgressBar.jsx";
@@ -7,28 +8,29 @@ import UploadCard from "../../components/ui/UploadCard.jsx";
 const TOTAL_STEPS = 4;
 
 export default function ApplicationFormPage() {
+  const { t } = useTranslation();
+
   const [step, setStep] = useState(1);
 
-  // Form state aligned with backend field names
-const [formData, setFormData] = useState({
-  applicantName: "",
-  age: "",
-  gender: "",
-  district: "",
-  address: "",
-  occupation_type: "",
-  education_level: "",
-  household_size: "",
-  ration_card_type: "",
-  aadhaarNumber: "",
-  electricityBill: null,
-  electricity_units: "",
-  incomeCertificate: null,
-  businessProof: null,
-  lpgInfo: "",
-  digitalPaymentsInfo: "",
-});
-
+  // Form state aligned with backend field names (DO NOT TOUCH)
+  const [formData, setFormData] = useState({
+    applicantName: "",
+    age: "",
+    gender: "",
+    district: "",
+    address: "",
+    occupation_type: "",
+    education_level: "",
+    household_size: "",
+    ration_card_type: "",
+    aadhaarNumber: "",
+    electricityBill: null,
+    electricity_units: "",
+    incomeCertificate: null,
+    businessProof: null,
+    lpgInfo: "",
+    digitalPaymentsInfo: ""
+  });
 
   function updateField(name, value) {
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -45,7 +47,7 @@ const [formData, setFormData] = useState({
   function handleSubmit(e) {
     e.preventDefault();
 
-    // This is the payload shape your backend likely expects
+    // Payload shape kept exactly as you designed for backend
     const payload = {
       applicantName: formData.applicantName,
       aadhaarNumber: formData.aadhaarNumber,
@@ -60,10 +62,11 @@ const [formData, setFormData] = useState({
       address: formData.address,
       lpgInfo: formData.lpgInfo,
       digitalPaymentsInfo: formData.digitalPaymentsInfo,
+      electricity_units: formData.electricity_units,
       // documents – will be FormData / file upload later
       electricityBill: formData.electricityBill,
       incomeCertificate: formData.incomeCertificate,
-      businessProof: formData.businessProof,
+      businessProof: formData.businessProof
     };
 
     console.log("Submitting application payload:", payload);
@@ -77,11 +80,13 @@ const [formData, setFormData] = useState({
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
         <div>
           <h1 className="text-2xl md:text-3xl font-semibold text-govBlue">
-            New Beneficiary Application
+            {t("form.newApplicationTitle")}
           </h1>
           <p className="text-xs md:text-sm text-slate-600 mt-1">
-            Fill the sections step by step. Fields marked with{" "}
-            <span className="text-red-600 font-semibold">*</span> are mandatory.
+            {/* You can add a translated helper later (add key to JSON) */}
+            Fill the sections step by step.{" "}
+            <span className="text-red-600 font-semibold">*</span> fields are
+            mandatory.
           </p>
         </div>
         <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-govSoftBlue text-xs text-govBlue border border-blue-200 font-medium">
@@ -98,20 +103,29 @@ const [formData, setFormData] = useState({
         {/* STEP 1: PERSONAL DETAILS */}
         {step === 1 && (
           <section className="section-box">
-            <h2 className="section-title mb-4">Personal Details</h2>
+            <h2 className="section-title mb-4">
+              {/* keep English or later add t("form.personalDetails") */}
+              Personal Details
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField id="applicantName" label="Applicant Name" required>
+              <FormField
+                id="applicantName"
+                label={t("form.applicantName")}
+                required
+              >
                 <input
                   id="applicantName"
                   type="text"
                   value={formData.applicantName}
-                  onChange={(e) => updateField("applicantName", e.target.value)}
+                  onChange={(e) =>
+                    updateField("applicantName", e.target.value)
+                  }
                   className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
                 />
               </FormField>
 
-              <FormField id="age" label="Age" required>
+              <FormField id="age" label={t("form.age")} required>
                 <input
                   id="age"
                   type="number"
@@ -122,7 +136,7 @@ const [formData, setFormData] = useState({
                 />
               </FormField>
 
-              <FormField id="gender" label="Gender" required>
+              <FormField id="gender" label={t("form.gender")} required>
                 <select
                   id="gender"
                   value={formData.gender}
@@ -136,7 +150,7 @@ const [formData, setFormData] = useState({
                 </select>
               </FormField>
 
-              <FormField id="district" label="District" required>
+              <FormField id="district" label={t("form.district")} required>
                 <input
                   id="district"
                   type="text"
@@ -147,7 +161,7 @@ const [formData, setFormData] = useState({
               </FormField>
             </div>
 
-            <FormField id="address" label="Address" required>
+            <FormField id="address" label={t("form.address")} required>
               <textarea
                 id="address"
                 rows="2"
@@ -158,7 +172,11 @@ const [formData, setFormData] = useState({
             </FormField>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <FormField id="occupation_type" label="Occupation Type" required>
+              <FormField
+                id="occupation_type"
+                label={t("form.occupation_type")}
+                required
+              >
                 <select
                   id="occupation_type"
                   value={formData.occupation_type}
@@ -176,7 +194,11 @@ const [formData, setFormData] = useState({
                 </select>
               </FormField>
 
-              <FormField id="education_level" label="Education Level" required>
+              <FormField
+                id="education_level"
+                label={t("form.education_level")}
+                required
+              >
                 <select
                   id="education_level"
                   value={formData.education_level}
@@ -204,7 +226,7 @@ const [formData, setFormData] = useState({
 
               <FormField
                 id="household_size"
-                label="Household Size"
+                label={t("form.household_size")}
                 required
                 hint="Number of people supported by this income."
               >
@@ -224,7 +246,7 @@ const [formData, setFormData] = useState({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 id="ration_card_type"
-                label="Ration Card Type"
+                label={t("form.ration_card_type")}
                 required
               >
                 <select
@@ -244,7 +266,7 @@ const [formData, setFormData] = useState({
 
               <FormField
                 id="aadhaarNumber"
-                label="Aadhaar Number"
+                label={t("form.aadhaarNumber")}
                 required
                 hint="Used only as a unique identifier. The raw number is never displayed."
               >
@@ -273,13 +295,14 @@ const [formData, setFormData] = useState({
 
             <UploadCard
               id="electricityBill"
-              label="Electricity Bill"
+              label={t("form.electricityBill")}
               hint="Latest bill used as a proxy for consumption and household stability. Accepted: PDF/JPG/PNG."
               accept=".pdf,.jpg,.jpeg,.png"
               onChange={(e) =>
                 updateField("electricityBill", e.target.files?.[0] ?? null)
               }
             />
+
             <FormField
               id="electricity_units"
               label="Average Monthly Electricity Units Consumed"
@@ -294,14 +317,13 @@ const [formData, setFormData] = useState({
                 onChange={(e) =>
                   updateField("electricity_units", e.target.value)
                 }
-                className="w-full border border-slate-300 rounded-lg px-4 py-2 text-sm 
-               focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
+                className="w-full border border-slate-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-govBlue focus:border-govBlue transition"
               />
             </FormField>
 
             <UploadCard
               id="incomeCertificate"
-              label="Income Certificate (optional)"
+              label={t("form.incomeCertificate")}
               hint="If available, upload to support income estimation."
               accept=".pdf,.jpg,.jpeg,.png"
               onChange={(e) =>
@@ -311,7 +333,7 @@ const [formData, setFormData] = useState({
 
             <UploadCard
               id="businessProof"
-              label="Business Proof (if self-employed)"
+              label={t("form.businessProof")}
               hint="E.g. shop license, UDYAM, GST certificate etc."
               accept=".pdf,.jpg,.jpeg,.png"
               onChange={(e) =>
@@ -328,7 +350,7 @@ const [formData, setFormData] = useState({
 
             <FormField
               id="lpgInfo"
-              label="LPG / Utility Usage Details"
+              label={t("form.lpgInfo")}
               hint="Optional notes about LPG usage or other household utilities."
             >
               <textarea
@@ -342,7 +364,7 @@ const [formData, setFormData] = useState({
 
             <FormField
               id="digitalPaymentsInfo"
-              label="Digital Payments / UPI Usage"
+              label={t("form.digitalPaymentsInfo")}
               hint="Optional notes about regular UPI or digital payment behaviour."
             >
               <textarea
@@ -366,7 +388,7 @@ const [formData, setFormData] = useState({
         {/* STEP 4: REVIEW & SUBMIT */}
         {step === 4 && (
           <section className="section-box">
-            <h2 className="section-title mb-4">Review & Submit</h2>
+            <h2 className="section-title mb-4">{t("form.reviewTitle")}</h2>
 
             <p className="text-sm text-slate-700 mb-4">
               Please review the key details below before submitting. In a full
@@ -451,7 +473,7 @@ const [formData, setFormData] = useState({
             disabled={step === 1}
             onClick={prevStep}
           >
-            ← Previous
+            ← {t("form.previous")}
           </Button>
 
           {step < TOTAL_STEPS ? (
@@ -460,14 +482,14 @@ const [formData, setFormData] = useState({
               onClick={nextStep}
               className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700"
             >
-              Next →
+              {t("form.next")} →
             </Button>
           ) : (
             <Button
               type="submit"
               className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700"
             >
-              Submit Application
+              {t("form.submit")}
             </Button>
           )}
         </div>

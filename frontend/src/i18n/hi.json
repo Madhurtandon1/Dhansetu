@@ -1,0 +1,40 @@
+{
+  "header": {
+    "ministry": "सामाजिक न्याय और अधिकारिता मंत्रालय",
+    "title": "स्मार्ट NBCFDC ऋण स्क्रीनिंग पोर्टल",
+    "subtitle": "न्यायपूर्ण और डेटा आधारित ऋण पहुँच के लिए एक पायलट पहल",
+    "home": "होम",
+    "apply": "आवेदन करें",
+    "login": "लॉगिन",
+    "contact": "संपर्क"
+  },
+  "landing": {
+    "heroTitle": "हर लाभार्थी के लिए न्यायपूर्ण डिजिटल क्रेडिट व्यवस्था",
+    "heroCta": "आवेदन शुरू करें",
+    "aboutTitle": "पोर्टल के बारे में",
+    "benefitsTitle": "यह क्यों महत्वपूर्ण है",
+    "howItWorksTitle": "प्रणाली कैसे काम करती है"
+  },
+  "form": {
+    "newApplicationTitle": "नया लाभार्थी आवेदन",
+    "applicantName": "आवेदक का नाम",
+    "age": "आयु",
+    "gender": "लिंग",
+    "district": "जिला",
+    "address": "पता",
+    "occupation_type": "व्यवसाय का प्रकार",
+    "education_level": "शैक्षणिक स्तर",
+    "household_size": "परिवार का आकार",
+    "ration_card_type": "राशन कार्ड प्रकार",
+    "aadhaarNumber": "आधार संख्या",
+    "electricityBill": "बिजली बिल",
+    "incomeCertificate": "आय प्रमाण पत्र (वैकल्पिक)",
+    "businessProof": "व्यवसाय प्रमाण (यदि स्व-रोज़गार)",
+    "lpgInfo": "एलपीजी / उपयोगिता उपयोग विवरण",
+    "digitalPaymentsInfo": "डिजिटल भुगतान / UPI उपयोग",
+    "reviewTitle": "समीक्षा और सबमिट",
+    "submit": "आवेदन सबमिट करें",
+    "next": "आगे",
+    "previous": "पीछे"
+  }
+}
